@@ -1,6 +1,6 @@
 ﻿using Microsoft.Maui.Controls;
 
-namespace MauiCalc;
+namespace MauiCalculator;
 
 public partial class MainPage : ContentPage
 {
