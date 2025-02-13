@@ -11,9 +11,9 @@
     # Build and publish to a folder called "out"
     RUN dotnet publish "./WebAPI.csproj" -c Release -o /app/out
     
-    # ---------------------------------------------
-    # STAGE 2: Runtime
-    # ---------------------------------------------
+# ---------------------------------------------
+# STAGE 2: Runtime
+# ---------------------------------------------
     FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
     WORKDIR /app
     
