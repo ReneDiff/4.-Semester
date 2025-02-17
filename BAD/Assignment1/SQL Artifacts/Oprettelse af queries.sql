@@ -64,17 +64,10 @@ GROUP BY e.Name;
 
 -- 9. Custom query: Volume discounts tracking
 SELECT 
-    e.Name as ExperienceName,
-    COUNT(DISTINCT er.GuestId) as CurrentGroupSize,
-    vd.MinGroupSize as NextDiscountThreshold,
-    CAST(vd.DiscountPercentage AS DECIMAL(5,2)) as PotentialDiscount
+    e.Name AS ExperienceName,
+    vd.MinGroupSize AS DiscountThreshold,
+    vd.DiscountPercentage AS PotentialDiscount
 FROM Experiences e
 INNER JOIN Providers p ON e.ProviderId = p.ProviderId
-LEFT OUTER JOIN ExperienceRegistrations er ON e.ExperienceId = er.ExperienceId
-LEFT OUTER JOIN VolumeDiscounts vd ON p.ProviderId = vd.ProviderId
-WHERE vd.MinGroupSize > (
-    SELECT COUNT(DISTINCT GuestId) 
-    FROM ExperienceRegistrations 
-    WHERE ExperienceId = e.ExperienceId
-)
-GROUP BY e.Name, vd.MinGroupSize, vd.DiscountPercentage;
+INNER JOIN VolumeDiscounts vd ON p.ProviderId = vd.ProviderId
+ORDER BY e.Name, vd.MinGroupSize;

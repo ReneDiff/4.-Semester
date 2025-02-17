@@ -54,7 +54,7 @@ IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Experiences')
 BEGIN
     CREATE TABLE Experiences (
         ExperienceId INT PRIMARY KEY IDENTITY(1,1),
-        ProviderId INT,
+        ProviderId INT NOT NULL,
         Name NVARCHAR(255) NOT NULL,
         Description NVARCHAR(MAX),
         Price DECIMAL(10,2) NOT NULL,
@@ -116,7 +116,20 @@ BEGIN
     PRINT 'Table SharedExperienceGuests already exists.';
 END;
 
+-- Second junction: Guests to Experiences (replaces ExperienceRegistrations)
+-- CREATE TABLE GuestExperienceRegistrations (
+--    GuestId INT,
+--    ExperienceId INT,
+--    SharedExperienceId INT,  -- This is not part of the primary key, just a reference
+--    PRIMARY KEY (GuestId, ExperienceId),
+--    FOREIGN KEY (GuestId) REFERENCES Guests(GuestId),
+--    FOREIGN KEY (ExperienceId) REFERENCES Experiences(ExperienceId),
+--    FOREIGN KEY (SharedExperienceId) REFERENCES SharedExperiences(SharedExperienceId)
+
+
 -- ExperienceRegistrations junction table
+-- ExperienceRegistrations is necessary because it explicitly states 
+-- that a specific guest is participating in a specific experience.
 IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'ExperienceRegistrations')
 BEGIN
     CREATE TABLE ExperienceRegistrations (
@@ -133,7 +146,8 @@ END
 ELSE
 BEGIN
     PRINT 'Table ExperienceRegistrations already exists.';
-END;
+END; 
+
 
 -- VolumeDiscounts table
 IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'VolumeDiscounts')

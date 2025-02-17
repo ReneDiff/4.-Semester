@@ -1,8 +1,8 @@
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args); //hostbuilder pattern
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(); // mapping controllers
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
