@@ -116,7 +116,7 @@ BEGIN
     PRINT 'Table SharedExperienceGuests already exists.';
 END;
 
--- ExperienceRegistrations table
+-- ExperienceRegistrations junction table
 IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'ExperienceRegistrations')
 BEGIN
     CREATE TABLE ExperienceRegistrations (
