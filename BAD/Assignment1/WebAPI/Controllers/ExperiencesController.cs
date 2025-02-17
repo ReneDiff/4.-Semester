@@ -8,7 +8,7 @@ namespace WebAPI.Controllers;
 [Route("experiences")]
 public class ExperiencesController : ControllerBase
 {
-    // Dummy data: Liste af hardcodede Experience-objekter
+    // Dummy data: Liste af hardcodede Ewxperience-objekter
     private static readonly List<Experience> Experiences = new List<Experience>
     {
         new Experience {Name = "Tur over graensen", Description = "En tur ned over graensen for at hente bajer.", Price = 1000},
