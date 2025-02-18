@@ -21,7 +21,7 @@ FROM SharedExperiences
 ORDER BY Date DESC;
 
 -- 4. Get the guests registered for a shared experience
-SELECT DISTINCT
+SELECT 
     g.Name
 FROM Guests g
 INNER JOIN SharedExperienceGuests seg ON g.GuestId = seg.GuestId
@@ -37,7 +37,7 @@ INNER JOIN SharedExperiences se ON see.SharedExperienceId = se.SharedExperienceI
 WHERE se.Name = N'Trip to Austria';
 
 -- 6. Get the guests registered for specific experiences
-SELECT DISTINCT
+SELECT 
     g.Name
 FROM Guests g
 INNER JOIN ExperienceRegistrations er ON g.GuestId = er.GuestId
@@ -56,11 +56,12 @@ FROM Experiences;
 -- 8. Get guest count and sales summary
 SELECT 
     e.Name,
-    COUNT(DISTINCT er.GuestId) as NumberOfGuests,
-    CAST(ISNULL(SUM(e.Price), 0) AS MONEY) as TotalSales
+    COUNT(er.GuestId) as NumberOfGuests,
+    CAST(ISNULL(COUNT(er.GuestId) * e.Price, 0) AS MONEY) AS TotalSales
 FROM Experiences e
 LEFT OUTER JOIN ExperienceRegistrations er ON e.ExperienceId = er.ExperienceId
-GROUP BY e.Name;
+GROUP BY e.ExperienceId, e.Name, e.Price;
+
 
 -- 9. Custom query: Volume discounts tracking
 SELECT 

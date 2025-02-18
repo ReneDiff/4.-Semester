@@ -116,17 +116,6 @@ BEGIN
     PRINT 'Table SharedExperienceGuests already exists.';
 END;
 
--- Second junction: Guests to Experiences (replaces ExperienceRegistrations)
--- CREATE TABLE GuestExperienceRegistrations (
---    GuestId INT,
---    ExperienceId INT,
---    SharedExperienceId INT,  -- This is not part of the primary key, just a reference
---    PRIMARY KEY (GuestId, ExperienceId),
---    FOREIGN KEY (GuestId) REFERENCES Guests(GuestId),
---    FOREIGN KEY (ExperienceId) REFERENCES Experiences(ExperienceId),
---    FOREIGN KEY (SharedExperienceId) REFERENCES SharedExperiences(SharedExperienceId)
-
-
 -- ExperienceRegistrations junction table
 -- ExperienceRegistrations is necessary because it explicitly states 
 -- that a specific guest is participating in a specific experience.
