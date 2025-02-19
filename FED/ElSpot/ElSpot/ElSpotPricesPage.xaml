@@ -1,0 +1,19 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ElSpot.ElSpotPricesPage">
+
+    <ListView x:Name="priceListView">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Orientation="Horizontal" Padding="10">
+                        <Label Text="{Binding HourDK}" WidthRequest="100"/>
+                        <Label Text="{Binding PriceArea}" WidthRequest="50"/>
+                        <Label Text="{Binding SpotPriceDKK}" WidthRequest="70"/>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+</ContentPage>

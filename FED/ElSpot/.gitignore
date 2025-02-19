@@ -1,0 +1,45 @@
+# Build-filer
+bin/
+obj/
+
+# MAUI-specifikke filer
+.platforms/
+AppPackages/
+.nuget/
+*.vs/
+*.userprefs
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# Mac-specifikke filer
+.DS_Store
+
+# Windows-specifikke filer
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+project.lock.json
+project.assets.json
+
+# User-secrets (hvis du bruger dem)
+secrets.json
+
+# Rider IDE
+.idea/
+*.iml
+
+# Logs og midlertidige filer
+*.log
+*.tmp
+
+# MAUI debug-mapper
+Logs/
+.cache/

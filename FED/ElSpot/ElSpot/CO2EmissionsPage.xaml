@@ -1,0 +1,26 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ElSpot.CO2EmissionsPage"
+             Title="CO2 Emissioner">
+
+    <VerticalStackLayout Padding="10">
+        <Label Text="CO2 Emissioner (g/kWh)" 
+               FontSize="20" 
+               FontAttributes="Bold" 
+               HorizontalOptions="Center"/>
+
+        <ListView x:Name="co2ListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal" Padding="10">
+                            <Label Text="{Binding HourDK}" WidthRequest="100"/>
+                            <Label Text="{Binding EmissionValue}" WidthRequest="70"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </VerticalStackLayout>
+
+</ContentPage>
