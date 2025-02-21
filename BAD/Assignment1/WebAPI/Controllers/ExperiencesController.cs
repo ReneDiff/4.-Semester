@@ -5,7 +5,7 @@ namespace WebAPI.Controllers;
 
 
 [ApiController]
-[Route("experiences")]
+[Route("[controller]")]
 public class ExperiencesController : ControllerBase
 {
     // Dummy data: Liste af hardcodede Ewxperience-objekter

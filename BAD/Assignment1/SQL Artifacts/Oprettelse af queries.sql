@@ -29,7 +29,7 @@ INNER JOIN SharedExperiences se ON seg.SharedExperienceId = se.SharedExperienceI
 WHERE se.Name = N'Trip to Austria';  -- Using N prefix for Unicode strings
 
 -- 5. Get the experiences included in a shared experience
-SELECT 
+SELECT DISTINCT
     e.Name
 FROM Experiences e
 INNER JOIN SharedExperienceExperiences see ON e.ExperienceId = see.ExperienceId
