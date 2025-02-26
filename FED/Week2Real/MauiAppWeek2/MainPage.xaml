@@ -3,80 +3,49 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppWeek2.MainPage">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="20"
-            Spacing="20">
+    <VerticalStackLayout Padding="10">
 
-            <!-- CollectionView til visning af billeder -->
-            <CollectionView ItemsSource="{Binding Images}" HeightRequest="200" HorizontalOptions="FillAndExpand">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Horizontal" />
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout Orientation="Vertical" Padding="10" HorizontalOptions="Center">
-                            <Image Source="{Binding Path}" HeightRequest="100" WidthRequest="150" Aspect="AspectFill" />
-                            <Label Text="{Binding Title}" FontAttributes="Bold" HorizontalOptions="Center" />
-                            <Label Text="{Binding Description}" HorizontalOptions="Center" />
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+        <!--Oeverste raekke: Select image, title, description, add-->
+        <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Start" Spacing="10" Margin="0,0,0,20">
+            <Button Text="Select Image" Clicked="OnSelectImageClicked"/>
+            <Entry x:Name="TitleEntry" Placeholder="Enter a title" WidthRequest="150"/>
+            <Editor x:Name="DescriptionEditor" Placeholder="Enter a description" WidthRequest="200" HeightRequest="5"/>
+            <Button Text="Add" Clicked="OnAddButtonClicked"/>
+        </HorizontalStackLayout>
 
-            <!-- Sektion til indtastning og billedvalg -->
-            <VerticalStackLayout
-                Spacing="15"
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="CenterAndExpand">
+        <!-- Billedeoversigt med wrap-around -->
+        <FlexLayout BindableLayout.ItemsSource="{Binding Images}" JustifyContent="SpaceEvenly" Wrap="Wrap" Direction="Row">
 
-                <Label
-                    Text="Select Images"
-                    FontSize="24"
-                    HorizontalOptions="Center" />
-                
-                <!-- Button for selecting images -->
-                <Button 
-                    Text="Select image"
-                    BackgroundColor="#6200EE"
-                    TextColor="White"
-                    HorizontalOptions="Center"
-                    Clicked="OnSelectImageClicked" />
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout Spacing="2">
+                        <!-- Billedebeholder -->
+                        <Image Source="{Binding Path}"
+                            WidthRequest="150"
+                            HeightRequest="150"
+                            Aspect="AspectFill"
+                            HorizontalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnImageTapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        
+                        <!-- Titel centreret -->
+                        <Label Text="{Binding Title}"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            LineBreakMode="NoWrap"/>
+                        
+                        <!-- Beskrivelse venstrestillet -->
+                        <Label Text="{Binding Description}"
+                            LineBreakMode="TailTruncation"
+                            WidthRequest="150"/>
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
 
-                <!-- Entry for title -->
-                <Entry 
-                    Placeholder="Enter a title"
-                    x:Name="TitleEntry"
-                    HorizontalOptions="FillAndExpand" />
+        </FlexLayout>
 
-                <!-- Editor for description -->
-                <Editor 
-                    Placeholder="Enter a description"
-                    x:Name="DescriptionEditor"
-                    AutoSize="TextChanges"
-                    HeightRequest="100"
-                    HorizontalOptions="FillAndExpand" />
-
-                <!-- Button for adding the image -->
-                <Button 
-                    Text="Add"
-                    BackgroundColor="#6200EE"
-                    TextColor="White"
-                    HorizontalOptions="FillAndExpand"
-                    Clicked="OnAddButtonClicked" />
-
-                <!-- Placeholder for selected image -->
-                <Image
-                    x:Name="SelectedImage"
-                    WidthRequest="150"
-                    HeightRequest="150"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"
-                    BackgroundColor="LightGray" />
-
-            </VerticalStackLayout>
-
-        </VerticalStackLayout>
-    </ScrollView>
+    </VerticalStackLayout>
 
 </ContentPage>

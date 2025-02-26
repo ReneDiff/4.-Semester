@@ -1,0 +1,71 @@
+# Visual Studio / VS Code / Rider
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln.ide
+
+# Bin & Obj folders
+bin/
+obj/
+
+# Build outputs
+*.dll
+*.exe
+*.app
+*.ipa
+*.aab
+*.apk
+*.pdb
+*.ilk
+*.obj
+*.so
+*.dylib
+*.lib
+*.nupkg
+*.snupkg
+*.nuspec
+*.psmdcp
+
+# User-specific files
+*.user
+*.userosscache
+*.sln.docstates
+*.swp
+*.swo
+
+# macOS / Linux system files
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+
+# .NET MAUI specific
+AppPackages/
+Platforms/Android/app/
+Platforms/iOS/build/
+Platforms/iOS/Pods/
+Platforms/MacCatalyst/build/
+Platforms/Tizen/build/
+Platforms/Windows/bin/
+Platforms/Windows/obj/
+
+# NuGet dependencies
+*.nupkg
+packages/
+project.lock.json
+project.assets.json
+.nuget/
+
+# JetBrains Rider specific
+.idea/
+*.sln.iml
+
+# Log files
+*.log
+
+# Temporary files
+tmp/
+temp/

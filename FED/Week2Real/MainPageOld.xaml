@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppWeek2.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="20">
+
+            <!-- CollectionView til visning af billeder -->
+            <CollectionView ItemsSource="{Binding Images}" HeightRequest="200" HorizontalOptions="FillAndExpand">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Vertical" Padding="10" HorizontalOptions="Center">
+                            <Image Source="{Binding Path}" HeightRequest="100" WidthRequest="150" Aspect="AspectFill" />
+                            <Label Text="{Binding Title}" FontAttributes="Bold" HorizontalOptions="Center" />
+                            <Label Text="{Binding Description}" HorizontalOptions="Center" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Sektion til indtastning og billedvalg -->
+            <VerticalStackLayout
+                Spacing="15"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand">
+
+                <Label
+                    Text="Select Images"
+                    FontSize="24"
+                    HorizontalOptions="Center" />
+                
+                <!-- Button for selecting images -->
+                <Button 
+                    Text="Select image"
+                    BackgroundColor="#6200EE"
+                    TextColor="White"
+                    HorizontalOptions="Center"
+                    Clicked="OnSelectImageClicked" />
+
+                <!-- Entry for title -->
+                <Entry 
+                    Placeholder="Enter a title"
+                    x:Name="TitleEntry"
+                    HorizontalOptions="FillAndExpand" />
+
+                <!-- Editor for description -->
+                <Editor 
+                    Placeholder="Enter a description"
+                    x:Name="DescriptionEditor"
+                    AutoSize="TextChanges"
+                    HeightRequest="100"
+                    HorizontalOptions="FillAndExpand" />
+
+                <!-- Button for adding the image -->
+                <Button 
+                    Text="Add"
+                    BackgroundColor="#6200EE"
+                    TextColor="White"
+                    HorizontalOptions="FillAndExpand"
+                    Clicked="OnAddButtonClicked" />
+
+                <!-- Placeholder for selected image -->
+                <Image
+                    x:Name="SelectedImage"
+                    WidthRequest="150"
+                    HeightRequest="150"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    BackgroundColor="LightGray" />
+
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+           x:Class="MauiAppWeek2.Views.ImagePopup">
+
+    <VerticalStackLayout Padding="20" Spacing="10" BackgroundColor="Black">
+        
+        <Label x:Name="PopupTitle"
+               FontSize="Header"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               TextColor="White"/>
+        
+        <Image x:Name="PopupImage"
+               WidthRequest="400"
+               HeightRequest="300"
+               Aspect="AspectFit"/>
+
+        <Editor x:Name="PopupDescription"
+                IsReadOnly="True"
+                AutoSize="TextChanges"
+                HeightRequest="100"
+                BackgroundColor="Transparent"
+                TextColor="White"
+                HorizontalOptions="Fill"/>
+        
+        <Button Text="Close"
+                BackgroundColor="Purple"
+                TextColor="Black"
+                Clicked="OnCloseButtonClicked"/>
+                
+    </VerticalStackLayout>
+    
+</mct:Popup>

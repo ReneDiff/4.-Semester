@@ -4,6 +4,10 @@ using Microsoft.Maui.Controls;
 using Microsoft.Maui.Storage;
 using MauiAppWeek2.Models;
 using MauiAppWeek2.Database;
+using System.Windows.Input;
+using CommunityToolkit.Maui.Views;
+using MauiAppWeek2.Views;
+
 
 public partial class MainPage : ContentPage
 {
@@ -65,7 +69,7 @@ public partial class MainPage : ContentPage
 
             // Ryd felterne
             _imagePath = string.Empty;
-            SelectedImage.Source = null;
+            //SelectedImage.Source = null;
             TitleEntry.Text = string.Empty;
             DescriptionEditor.Text = string.Empty;
 
@@ -88,9 +92,18 @@ public partial class MainPage : ContentPage
 		if (image != null)
 		{
 			_imagePath = image.FullPath;
-			SelectedImage.Source = _imagePath;
+			//SelectedImage.Source = _imagePath;
 		}
 	}
 
+    private void OnImageTapped(object sender, TappedEventArgs e)
+    {
+        if (sender is Image image && image.BindingContext is ImageInfo imageInfo)
+        {
+            var popup = new ImagePopup(imageInfo.Path ?? "", imageInfo.Title ?? "", imageInfo.Description ?? "");
+            this.ShowPopup(popup);
+        }
+    }
 }
+
 
