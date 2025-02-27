@@ -11,7 +11,7 @@ using Models.EFGetStarted;
 namespace EFGetStarted.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    [Migration("20250224144621_InitialCreate")]
+    [Migration("20250227133732_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
