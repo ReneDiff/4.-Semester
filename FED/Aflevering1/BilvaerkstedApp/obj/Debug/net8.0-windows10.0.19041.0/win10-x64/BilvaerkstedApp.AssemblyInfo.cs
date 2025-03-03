@@ -17,7 +17,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BilvaerkstedApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+2a86be07bf75f43840c623095af9e51782481e63")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+d4cac9b27ba2df5d2bcf30025a404bbc202a53f9")]
 [assembly: System.Reflection.AssemblyProductAttribute("BilvaerkstedApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BilvaerkstedApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
