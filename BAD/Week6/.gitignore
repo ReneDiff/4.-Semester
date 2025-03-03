@@ -1,0 +1,66 @@
+# Bin and obj folders (compiled output)
+bin/
+obj/
+
+# Rider project files
+.idea/
+*.sln.iml
+
+# Visual Studio Code settings
+.vscode/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+build/
+out/
+
+# Logs and debug files
+*.log
+debug/
+*.pidb
+*.ilk
+*.pdb
+*.idb
+
+# EF Core Migrations files (optional - include if you don’t want generated migration files)
+Migrations/
+
+# Database-related files (if using SQLite for testing)
+*.db
+*.sqlite
+*.sqlite3
+*.mdf
+*.ldf
+!*.sql
+
+# NuGet Packages
+packages/
+*.nupkg
+.nuget/
+
+# Dotnet tools
+.dotnet/
+.env
+
+# Rider & JetBrains
+*.idea/
+*.dotCover
+*.dotSettings
+*.ReSharper
+*.resharperuser
+*.sln.DotSettings
+
+# Ignore compiled DLLs and EXEs
+*.dll
+*.exe
+
+# Ignore Entity Framework Core Scaffolded Models (if you plan to regenerate them)
+Models/
+
+# Ignore compiled C# files
+*.csproj.user
