@@ -1,0 +1,6 @@
+@MyBGList_Chap6_HostAddress = http://localhost:5102
+
+GET {{MyBGList_Chap6_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
