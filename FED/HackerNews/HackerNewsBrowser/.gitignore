@@ -1,0 +1,64 @@
+# Ignore Visual Studio specific files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build output
+bin/
+obj/
+AppPackages/
+TestResults/
+
+# macOS specific files
+*.DS_Store
+
+# Windows specific files
+Thumbs.db
+Desktop.ini
+
+# MAUI specific folders
+.platforms/
+.bundle/
+.nuget/
+
+# User-specific configuration
+*.config
+*.log
+*.ncrunch*
+*.localhistory
+.idea/
+*.cache
+*.prefs
+*.orig
+*.swp
+*.sublime-*
+
+# Secrets and sensitive files
+secrets.json
+secrets/*
+.env
+.env.*
+
+# Rider and JetBrains files
+.idea/
+*.sln.iml
+
+# Node modules (if using npm for frontend dependencies)
+node_modules/
+
+# Ignore compiled and temporary XAML-related files
+**/*.g.cs
+**/*.g.i.cs
+**/*.lck
+
+# Ignore Xamarin/Maui related cache files
+.dsym/
+*.app/
+*.apk
+*.aab
+*.ipa
+
+# Ignore VS Code workspace settings
+.vscode/
