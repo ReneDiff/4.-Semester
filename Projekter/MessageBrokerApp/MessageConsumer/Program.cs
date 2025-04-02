@@ -1,30 +1,37 @@
-﻿using MessageConsumer;
-using MessageShared;
-var handler = new MessageHandler();
-var db = new PostgresService("Host=localhost;Port=5432;Username=appuser;Password=secret;Database=messagesdb");
+﻿// MessageConsumer/Program.cs
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using MessageConsumer; // Tilføj dit namespace
 
-// Tving en besked med lige sekund og frisk timestamp
-var testMessage = new Message
+public class Program
 {
-    Timestamp = DateTime.UtcNow.AddSeconds(-(DateTime.UtcNow.Second % 2)), // sikrer lige sekund
-    Counter = 1
-};
+    public static async Task Main(string[] args)
+    {
+        // Fjern din testkode herfra, da workerne nu håndterer logikken
+        /*
+        var handler = new MessageHandler();
+        // ... rest of the old test code ...
+        */
 
-var action = handler.HandleMessage(testMessage);
-Console.WriteLine($"Handler returned: {action}");
+        await CreateHostBuilder(args).Build().RunAsync();
+    }
 
-if (action == MessageHandlingResult.SaveToDatabase)
-{
-    db.SaveMessage(testMessage);
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureServices((hostContext, services) =>
+            {
+                // Registrer dine services
+                services.AddSingleton<IMessageHandler, MessageHandler>();
+
+                // Registrer PostgresService - hardkodet connection string for nu
+                // Næste skridt er at hente denne fra konfiguration!
+                services.AddSingleton<IDatabaseService>(sp =>
+                    new PostgresService("Host=localhost;Port=5433;Username=appuser;Password=secret;Database=messagesdb"));
+
+                // Registrer RabbitMqConsumer som Singleton
+                services.AddSingleton<RabbitMqConsumer>();
+
+                // Registrer din worker service
+                services.AddHostedService<ConsumerWorker>();
+            });
 }
-
-/*
-var handler = new MessageHandler();
-var db = new PostgresService("Host=localhost;Port=5432;Username=appuser;Password=secret;Database=messagesdb");
-var consumer = new RabbitMqConsumer(handler, db);
-
-consumer.Start();
-
-// Hold programmet i live
-Console.ReadLine();
-*/

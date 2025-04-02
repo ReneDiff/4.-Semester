@@ -1,19 +1,24 @@
 ﻿using MessageShared;
 using MessageProducer;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
-var producer = new RabbitMqProducer();
-
-int counter = 0;
-
-while (true)
+public class Program
 {
-    var message = new Message
+    public static async Task Main(string[] args)
     {
-        Timestamp = DateTime.UtcNow,
-        Counter = counter++
-    };
+        await CreateHostBuilder(args).Build().RunAsync();
+    }
 
-    producer.Send(message);
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureServices((hostContext, services) =>
+            {
+                // Registrer RabbitMqProducer. Singleton er fint her, da den holder en forbindelse.
+                // DI containeren vil kalde Dispose automatisk hvis den implementerer IDisposable.
+                services.AddSingleton<RabbitMqProducer>();
 
-    await Task.Delay(1000); // vent 1 sekund
+                // Registrer din worker service
+                services.AddHostedService<ProducerWorker>();
+            });
 }
