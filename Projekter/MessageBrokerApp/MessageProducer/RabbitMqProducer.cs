@@ -3,6 +3,9 @@ using System.Text;
 using System.Text.Json;
 using MessageShared;
 using RabbitMQ.Client;
+using Microsoft.Extensions.Logging; // Antager du har logger fra DI-step
+using Microsoft.Extensions.Configuration; // Tilføj denne
+
 
 namespace MessageProducer;
 
