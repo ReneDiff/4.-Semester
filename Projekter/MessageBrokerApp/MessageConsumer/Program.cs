@@ -1,8 +1,8 @@
-﻿// MessageConsumer/Program.cs
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using MessageConsumer; // Tilføj dit namespace
+using Microsoft.Extensions.Logging; // Tilføj denne for at logge
 using System; // Tilføjet for InvalidOperationException
 
 
@@ -10,7 +10,15 @@ public class Program
 {
     public static async Task Main(string[] args)
     {
-        await CreateHostBuilder(args).Build().RunAsync();
+        var host = CreateHostBuilder(args).Build();
+
+        // Log det aktive miljø for at bekræfte
+        var logger = host.Services.GetRequiredService<ILogger<Program>>();
+        var env = host.Services.GetRequiredService<IHostEnvironment>();
+        logger.LogWarning("##### MessageConsumer starter i miljø: {EnvironmentName} #####", env.EnvironmentName);
+
+        await host.RunAsync();
+        // await CreateHostBuilder(args).Build().RunAsync();
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>
