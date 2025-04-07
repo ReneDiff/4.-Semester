@@ -2,17 +2,24 @@
 using MessageConsumer;
 using MessageShared;
 using System;
+using Microsoft.Extensions.Logging.Abstractions; // <-- TILFØJ DENNE
+using Microsoft.Extensions.Logging; // Tilføj logging
+
 
 namespace MessageConsumer.Tests;
 
 public class MessageHandlerTests
 {
-    private IMessageHandler _handler;
+    private IMessageHandler _handler = null;
 
     [SetUp]
     public void Setup()
     {
-        _handler = new MessageHandler();
+        // Opret en NullLogger (logger der ingenting gør)
+        ILogger<MessageHandler> dummyLogger = new NullLogger<MessageHandler>();
+
+        // Giv loggeren med til MessageHandler's konstruktør
+        _handler = new MessageHandler(dummyLogger);
     }
 
     [Test]

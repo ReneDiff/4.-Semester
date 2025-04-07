@@ -55,7 +55,7 @@ public class RabbitMqConsumer :IDisposable
         }
     }
 
-    public void StartConsuming() // Omdøbt fra Start for klarhed
+    public void StartConsuming() 
     {
         if (_channel == null || !_channel.IsOpen)
         {
@@ -85,7 +85,6 @@ public class RabbitMqConsumer :IDisposable
                     return; // Stop behandling af denne besked
                 }
 
-                // *** HER KOMMER DEN MANGLENDE LOGIK ***
                 // Kald MessageHandler for at bestemme handling
                 var handlingResult = _handler.HandleMessage(message);
 
@@ -141,7 +140,6 @@ public class RabbitMqConsumer :IDisposable
                         _channel.BasicAck(ea.DeliveryTag, false); // Bekræft (fjern) beskeden
                         break;
                 }
-                    // *** SLUT PÅ DEN MANGLENDE LOGIK ***
             }
             catch (JsonException jsonEx)
             {
