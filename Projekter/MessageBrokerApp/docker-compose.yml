@@ -72,7 +72,7 @@ services:
       - RabbitMq__HostName=rabbitmq
       # Override Postgres connection string til at bruge Docker service navne/porte
       # VIGTIGT: Brug 'postgres' som host og intern port 5432
-      - ConnectionStrings__PostgresDb=Host=postgres;Port=5433;Username=appuser;Password=secret;Database=messagesdb
+      - ConnectionStrings__PostgresDb=Host=postgres;Port=5432;Username=appuser;Password=secret;Database=messagesdb
     depends_on:
       rabbitmq:
           condition: service_healthy
