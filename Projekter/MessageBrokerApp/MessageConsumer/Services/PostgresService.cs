@@ -1,6 +1,7 @@
 using MessageShared;
 using System;
 using Npgsql;
+using System.Threading.Tasks; 
 
 namespace MessageConsumer;
 
@@ -14,17 +15,18 @@ public class PostgresService : IDatabaseService
         _connectionString = connectionString;
     }
 
-    public void SaveMessage(Message message)
+    public async Task SaveMessageAsync(Message message)
     {
         using var conn = new NpgsqlConnection(_connectionString);
-        conn.Open();
+        
+        await conn.OpenAsync();
 
         using var cmd = new NpgsqlCommand("INSERT INTO messages (timestamp, counter) VALUES (@timestamp, @counter)", conn);
 
         cmd.Parameters.AddWithValue("timestamp", message.Timestamp);
         cmd.Parameters.AddWithValue("counter",message.Counter);
 
-        cmd.ExecuteNonQuery();
+        await cmd.ExecuteNonQueryAsync();
 
         Console.WriteLine($"[DB] Gemte besked: Counter={message.Counter}, Timestamp={message.Timestamp:HH:mm:ss}");
     }

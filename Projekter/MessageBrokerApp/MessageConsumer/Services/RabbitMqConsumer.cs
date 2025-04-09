@@ -95,7 +95,7 @@ public class RabbitMqConsumer :IDisposable
                         _logger.LogInformation("Attempting to save message Counter={Counter}", message.Counter);
                         try
                         {
-                            _database.SaveMessage(message);
+                            await _database.SaveMessageAsync(message);
                             _logger.LogInformation("Message saved successfully. Counter={Counter}. Acking message.", message.Counter);
                             _channel.BasicAck(ea.DeliveryTag, false); // Bekræft modtagelse
                         }

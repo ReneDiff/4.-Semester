@@ -1,4 +1,5 @@
 using MessageShared;
+using System.Threading.Tasks;
 
 namespace MessageConsumer;
 
@@ -6,5 +7,5 @@ namespace MessageConsumer;
 
 public interface IDatabaseService
 {
-    void SaveMessage(Message message);
+    Task SaveMessageAsync(Message message);
 }

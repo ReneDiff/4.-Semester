@@ -16,9 +16,6 @@ public class MessageHandler : IMessageHandler
     }
     public MessageHandlingResult HandleMessage(Message message)
     {
-        // ERROR HANDLING - FEJLFIKS
-        _logger.LogError("--- ENTERING HandleMessage for Counter: {Counter} ---", message.Counter);
-
         var now = DateTime.UtcNow;
         var age = now - message.Timestamp;
         int second = message.Timestamp.Second; // Gem sekund-værdi for logning
